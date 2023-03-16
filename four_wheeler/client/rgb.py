@@ -8,31 +8,22 @@ import json
 import threading
 import math
 
-gpiochannel1 = [0, 5, 6, 13, 19, 26]
-# pin 5 and 6 acceleration
-# pin 13 and 19 acceleration
-# pin 22 and 26 are the PWM control pins
-
-gpiochannel2 = [17, 27, 22, 10, 9, 11]
-# pin 27 and 22 acceleration
-# pin 10 and 9 acceleration
-# pin 17 and 11 are the PWM control pins
+channel = [16,20,21]
 
 # for board setting
 GPIO.setmode(GPIO.BCM)
 
 # setup to pin mode
-for i in gpiochannel1:
-    GPIO.setup(i, GPIO.OUT)
-for i in gpiochannel2:
+for i in channel:
     GPIO.setup(i, GPIO.OUT)
 
-# rgb in pwm mode in a list
-motorDriver1_1 = GPIO.PWM(26, 100)
-motorDriver1_2 = GPIO.PWM(0, 100)
-motorDriver2_1 = GPIO.PWM(17, 100)
-motorDriver2_2 = GPIO.PWM(11, 100)
 
+#rgb in pwm mode in a list
+rgbcolor= [GPIO.PWM(c,100) for c in channel]
+
+# start the birghtness with 100
+for i in range(len(rgbcolor)):
+    rgbcolor[i].start(100)
 
 def findPercents(inp, mi, ma, v):
     va = (inp - mi) * 100 / (ma - mi)

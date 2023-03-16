@@ -51,12 +51,12 @@ def DetectHands(
                             right.append([cx, cy])
                     if handshow:  # show the hand data
                         if label == "Left":
-                            cv2.putText(img, "left", (left[0][0]-20, left[0][1]),
+                            cv2.putText(img, "left hand", (left[0][0]-20, left[0][1]),
                                         cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 2)
                             # cv2.circle(
                             #     img, (left[0][0], left[0][1]), 8, (0, 0, 255), cv2.FILLED)
                         elif label == "Right":
-                            cv2.putText(img, "right", (right[0][0]-20, right[0][1]),
+                            cv2.putText(img, "right hand", (right[0][0]-20, right[0][1]),
                                         cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 0), 2)
             else:  # if either one hand detected this code will happen
                 for i in result.multi_handedness:
